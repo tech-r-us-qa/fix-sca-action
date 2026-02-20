@@ -47,8 +47,10 @@ runs:
   # temporary step - will remove once Fix SCA changes are merged into Prod Release CLI
   - name: Setup Veracode CLI
     shell: bash
+    env:
+      ACTION_PATH: ${{ github.action_path }}
     run: |
-      bash ./scripts/fix-sca-setup-cli.sh
+      bash ${{ github.action_path }}/scripts/fix-sca-setup-cli.sh
 
   # - name: Run Fix for SCA
   #   id: run-fix-sca

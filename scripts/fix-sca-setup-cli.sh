@@ -18,5 +18,5 @@ EOF
 
 # Extract Veracode CLI
 mkdir -p ~/veracode-cli-2
-unzip ./cli/veracode.zip  -d ~/veracode-cli-2
+unzip "$ACTION_PATH"/cli/veracode.zip  -d ~/veracode-cli-2
 chmod +x ~/veracode-cli-2/veracode
