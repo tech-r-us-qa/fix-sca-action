@@ -5,7 +5,7 @@ export PATH=$PATH:~/veracode-cli-2/
 PROJECT_ROOT_DIR=''
 PROJECT_PATH="$GITHUB_WORKSPACE/source-code/$PROJECT_ROOT_DIR"
 
-cd $PROJECT_PATH
+# cd $PROJECT_PATH
 
 PARAMS=""
 if [ -n "${FIX_SCA_PARAMS}" ]; then
@@ -14,6 +14,10 @@ if [ -n "${FIX_SCA_PARAMS}" ]; then
 fi
 
 echo "PARAMS: $PARAMS"
+
+echo "pwd: $(pwd)"
+echo "ls"
+ls -ltrh
 
 veracode fix sca "$PROJECT_PATH" \
     --results $GITHUB_WORKSPACE/$SCA_RESULTS_FILE_NAME \
