@@ -55,7 +55,7 @@ runs:
   - name: Setup ast-grep
     shell: bash
     run: |
-      sudo unzip -q ast-grep/ast-grep-0.40.5.zip -d /usr/local/bin ast-grep
+      sudo unzip -q ${{ github.action_path }}/ast-grep/ast-grep-0.40.5.zip -d /usr/local/bin ast-grep
 
   - name: Run Fix for SCA
     id: run-fix-sca
