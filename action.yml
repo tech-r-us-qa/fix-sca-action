@@ -44,10 +44,11 @@ runs:
       token: ${{ inputs.client-payload-token }}
       path: 'source-code'
 
-  # # temporary step - will remove once Fix SCA changes are merged into Prod Release CLI
-  # - name: Setup Veracode CLI
-  #   run: |
-  #     bash $GITHUB_WORKSPACE/veracode-helper/helper/scripts/fix-sca-setup-cli.sh
+  # temporary step - will remove once Fix SCA changes are merged into Prod Release CLI
+  - name: Setup Veracode CLI
+    shell: bash
+    run: |
+      bash ./scripts/fix-sca-setup-cli.sh
 
   # - name: Run Fix for SCA
   #   id: run-fix-sca
