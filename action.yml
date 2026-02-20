@@ -58,13 +58,15 @@ runs:
     run: |
       bash ${{ github.action_path }}/scripts/fix-sca-run.sh
 
-  # - name: Create Pull Request
-  #   id: create-pr
-  #   if: steps.run-fix-sca.outputs.run-next-step == 'true'
-  #   run: |
-  #     bash $GITHUB_WORKSPACE/veracode-helper/helper/scripts/fix-sca-create-pr.sh
+  - name: Create Pull Request
+    id: create-pr
+    shell: bash
+    if: steps.run-fix-sca.outputs.run-next-step == 'true'
+    run: |
+      bash ${{ github.action_path }}/scripts/fix-sca-create-pr.sh
 
-  # - name: Post Fix PR comment on original PR
-  #   if: steps.create-pr.outputs.run-next-step == 'true'
-  #   run: |
-  #     bash $GITHUB_WORKSPACE/veracode-helper/helper/scripts/fix-sca-post-pr-comment.sh
+  - name: Post Fix PR comment on original PR
+    shell: bash
+    if: steps.create-pr.outputs.run-next-step == 'true'
+    run: |
+      bash ${{ github.action_path }}/scripts/fix-sca-post-pr-comment.sh
