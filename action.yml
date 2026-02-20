@@ -52,10 +52,11 @@ runs:
     run: |
       bash ${{ github.action_path }}/scripts/fix-sca-setup-cli.sh
 
-  # - name: Run Fix for SCA
-  #   id: run-fix-sca
-  #   run: |
-  #     bash $GITHUB_WORKSPACE/veracode-helper/helper/scripts/fix-sca-run.sh
+  - name: Run Fix for SCA
+    id: run-fix-sca
+    shell: bash
+    run: |
+      bash ${{ github.action_path }}/scripts/fix-sca-run.sh
 
   # - name: Create Pull Request
   #   id: create-pr
