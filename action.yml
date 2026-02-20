@@ -1,0 +1,66 @@
+name: 'Veracode Fix for SCA'
+description: ''
+inputs:
+  github-token:
+    description: "Github token to download"
+    required: true
+  sca-scan-run-id:
+    description: ""
+    required: true
+  sca-scan-artifact-id:
+    description: ""
+    required: true
+  repository:
+    description: ""
+    required: true
+  branch:
+    description: ""
+    required: true
+  client-payload-token:
+    description: ""
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+  - name: Download SCA scan artifact
+    uses: actions/download-artifact@v5
+    with:
+      github-token: ${{ inputs.github-token }}
+      run-id: ${{ inputs.sca-scan-run-id }}
+      artifact-ids: ${{ inputs.sca-scan-artifact-id }}
+
+  # - uses: actions/checkout@v4
+  #   with:
+  #     path: veracode-helper
+  #     sparse-checkout: |
+  #       helper/cli/fix-sca/
+  #       helper/scripts/
+
+  # - uses: actions/checkout@v4
+  #   with:
+  #     repository: ${{ inputs.repository }}
+  #     ref: ${{ inputs.branch }}
+  #     token: ${{ inputs.client-payload-token }}
+  #     path: 'source-code'
+
+  # # temporary step - will remove once Fix SCA changes are merged into Prod Release CLI
+  # - name: Setup Veracode CLI
+  #   run: |
+  #     bash $GITHUB_WORKSPACE/veracode-helper/helper/scripts/fix-sca-setup-cli.sh
+
+  # - name: Run Fix for SCA
+  #   id: run-fix-sca
+  #   run: |
+  #     bash $GITHUB_WORKSPACE/veracode-helper/helper/scripts/fix-sca-run.sh
+
+  # - name: Create Pull Request
+  #   id: create-pr
+  #   if: steps.run-fix-sca.outputs.run-next-step == 'true'
+  #   run: |
+  #     bash $GITHUB_WORKSPACE/veracode-helper/helper/scripts/fix-sca-create-pr.sh
+
+  # - name: Post Fix PR comment on original PR
+  #   if: steps.create-pr.outputs.run-next-step == 'true'
+  #   run: |
+  #     bash $GITHUB_WORKSPACE/veracode-helper/helper/scripts/fix-sca-post-pr-comment.sh
