@@ -34,7 +34,7 @@ GITHUB_PR_POST_RESPONSE=$(curl -X POST \
     --arg head "$BRANCH_NAME" \
     --arg base "$SOURCE_BRANCH" \
     '{title: $title, body: $body, head: $head, base: $base}')" \
-    "$GITHUB_URL/repos/$REPOSITORY_FULL_NAME/pulls")
+    "$GITHUB_API_URL/repos/$REPOSITORY_FULL_NAME/pulls")
 
 echo "Github PR Post Response"
 echo $GITHUB_PR_POST_RESPONSE | tee $GITHUB_WORKSPACE/github_fix_pr_post_response.json

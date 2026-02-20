@@ -18,7 +18,7 @@ COMMENT_RESPONSE=$(curl --request POST \
     --header "Accept: application/vnd.github+json" \
     --header "X-GitHub-Api-Version: 2022-11-28" \
     --data "{\"body\": $(echo "$COMMENT_BODY" | jq -Rs .)}" \
-    "$GITHUB_URL/repos/$REPOSITORY_FULL_NAME/issues/$PR_NUMBER/comments")
+    "$GITHUB_API_URL/repos/$REPOSITORY_FULL_NAME/issues/$PR_NUMBER/comments")
 
 echo "Comment response:"
 echo $COMMENT_RESPONSE
