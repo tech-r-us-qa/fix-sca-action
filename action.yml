@@ -37,12 +37,12 @@ runs:
   #       helper/cli/fix-sca/
   #       helper/scripts/
 
-  # - uses: actions/checkout@v4
-  #   with:
-  #     repository: ${{ inputs.repository }}
-  #     ref: ${{ inputs.branch }}
-  #     token: ${{ inputs.client-payload-token }}
-  #     path: 'source-code'
+  - uses: actions/checkout@v4
+    with:
+      repository: ${{ inputs.repository }}
+      ref: ${{ inputs.branch }}
+      token: ${{ inputs.client-payload-token }}
+      path: 'source-code'
 
   # # temporary step - will remove once Fix SCA changes are merged into Prod Release CLI
   # - name: Setup Veracode CLI
